@@ -3,6 +3,15 @@ import { articles } from "../mocks/data";
 
 const cardsContainer = document.querySelector('.cards-container');
 
+const api = axios.get('https://lambda-times-api.herokuapp.com/articles');
+api.then(res => {
+  cardsContainer.appendChild(Card(res));
+  console.log(res);
+})
+api.catch(err => {
+  console.log(err);
+})
+
 const Card = (article) => {
   // TASK 5
   // ---------------------
@@ -61,8 +70,9 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-  articles.forEach(article => {
-    axios.get(`https://lambda-times-api.herokuapp.com/${article}`)
+
+  articles.forEach(selector => {
+    axios.get(`https://lambda-times-api.herokuapp.com/${selector}`)
     .then(res => {
       cardsContainer.appendChild(Card(res))
     })
@@ -70,7 +80,56 @@ const cardAppender = (selector) => {
       console.log(err);
     })
   })
-    
+
+    // axios.get('https://lambda-times-api.herokuapp.com/articles')
+    // .then(res => {
+    //   cardsContainer.appendChild(Card(res))
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
+
+    // selector.forEach(item => {
+    //   axios.get('https://lambda-times-api.herokuapp.com/articles')
+    // .then(res => {
+    //   cardsContainer.appendChild(Card(res))
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
+    // })
+
+
+    // selector.forEach(article => {
+    //   axios.get(`https://lambda-times-api.herokuapp.com/${article}`)
+    // .then(res => {
+    //   cardsContainer.appendChild(Card(res))
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
+    // })
+
+//   articles.forEach(article => {
+//   axios.get('https://lambda-times-api.herokuapp.com/articles')
+//     .then(res => {
+//       cardsContainer.appendChild(Card(res))
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     })
+// })
+
+// articles.forEach(article => {
+//   axios.get(`https://lambda-times-api.herokuapp.com/${article}`)
+//     .then(res => {
+//       cardsContainer.appendChild(Card(res))
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     })
+// })
+
 }
 
 
